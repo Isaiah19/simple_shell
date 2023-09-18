@@ -9,14 +9,13 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-#include <sys/types.h>
-#include <sys/wait.h>
 #include <sys/stat.h>
 #include <signal.h>
 #include <limits.h>
 #include <errno.h>
 #include <fcntl.h>
-
+#include <sys/types.h>
+#include <sys/wait.h>
 
 extern char **environ;
 
@@ -42,13 +41,12 @@ typedef struct shdata
 	int status;
 } shell_state;
 
-
 /**
  * struct sep_list_s - singly linked list
  * @separator: seperators
  * @next: next node
- *
  */
+
 typedef struct sep_list_s
 {
 	char separator;
@@ -71,7 +69,7 @@ typedef struct builtin_s
  * @line: command line
  * @next: next node
  * Description: single linked list to store command lines
- */
+*/
 typedef struct line_list_s
 {
 	char *line;
@@ -94,8 +92,6 @@ typedef struct r_var_list
 	struct r_var_list *next;
 } r_var;
 
-
-
 sep_list *add_sep_node_end(sep_list **head, char sep);
 void free_sep_list(sep_list **head);
 line_list *add_line_node_end(line_list **head, char *line);
@@ -104,10 +100,9 @@ void free_line_list(line_list **head);
 r_var *add_rvar_node(r_var **head, int lvar, char *var, int lval);
 void free_rvar_list(r_var **head);
 
-
 int repeated_char(char *input, int i);
-int error_sep_op(char *input, int i, char last);
 void print_syntax_error(shell_state *datash, char *input, int i, int bool);
+int error_sep_op(char *input, int i, char last);
 
 char *_strdup(const char *s);
 int _strlen(const char *s);
@@ -123,8 +118,8 @@ char *swap_char(char *input, int bool);
 void add_nodes(sep_list **head_s, line_list **head_l, char *input);
 void go_next(sep_list **list_s, line_list **list_l, shell_state *datash);
 int split_commands(shell_state *datash, char *input);
-void bring_line(char **lineptr, size_t *n, char *buffer, size_t j);
 ssize_t get_line(char **lineptr, size_t *n, FILE *stream);
+void bring_line(char **lineptr, size_t *n, char *buffer, size_t j);
 
 int exec_line(shell_state *datash);
 
