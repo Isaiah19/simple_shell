@@ -79,5 +79,5 @@ int main(int argc, char **argv)
 	if (shelldata.status > 0)
 		return (shelldata.status);
 
-	return (255);
+	return (0);
 }
